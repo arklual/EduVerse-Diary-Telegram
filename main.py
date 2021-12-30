@@ -59,7 +59,7 @@ def login(username, password):
 
 def parse_subjects(session):
     response = session.get('https://my.dnevnik76.ru/marks/current/edurng8409/list/')
-    soup = BeautifulSoup(response.text, features='lxml')
+    soup = BeautifulSoup(response.text)
     divs = soup.find_all('div')
     marks_div = divs[0]
     for div in divs:
