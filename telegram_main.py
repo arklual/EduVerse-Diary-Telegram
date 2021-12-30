@@ -27,11 +27,13 @@ def get_password(message):
     add_user_to_db(message.from_user.id, ''+user['username'], user['password'])
 
 def add_user_to_db(user_id: int, username: str, password: str):
+    cursor = conn.cursor()
     cursor.execute('INSERT INTO users (user_id, username, password) VALUES (?, ?, ?)',
                    (user_id, username, password))
     conn.commit()
 @bot.message_handler(commands=['marks'])
 def start_message(message):
+    cursor = conn.cursor()
     cursor.execute('SELECT username, password FROM users WHERE user_id = ?', (message.from_user.id, ))
     rows = cursor.fetchall()
     username, password = '',''
