@@ -1,6 +1,3 @@
-from curses import use_default_colors
-from os import stat
-from matplotlib import use
 import psycopg2
 
 class DBFile():

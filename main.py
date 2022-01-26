@@ -1,18 +1,23 @@
-from os import EX_CANTCREAT
-import aiogram
 import config
 from aiogram import Bot, Dispatcher, executor, types
 import logging
 from aiogram.dispatcher.filters import Command
 from aiogram.utils.markdown import hbold, hcode, hitalic, hunderline, hlink, hstrikethrough
-import db_file
-from parser import fill_edu_instituts
+from db_file import DBFile
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-import parser
+#import parser
 from fsm import SignInToDiary
 from aiogram.dispatcher.storage import FSMContext
 
+#Description of bot_______________________________________________________
+"""
+Я бот компании  EduVerse™. Наша компания собирается поменять образование и взгляд на него. А начали мы с меня. Я EduVerse Diary - телеграм бот. Я помогу тебе следить за твоими успехами в учебе и даже помогу сделать так, чтоб мамочка гордилась твоими оценками,  а ты не парился и занимался своими делами. 
 
+Дальше будет интересно. Следи за нами, оставайся и никуда не уходи!
+
+Нажми START чтобы узнать, что я могу делать на данный момент
+"""
+# ___________________________________________________________________________
 
 
 #log
@@ -22,8 +27,10 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token = config.TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
+#dp = Dispatcher(bot)
+
 # Соединение с БД
-db = db_file.DBFile()
+db = DBFile()
 
 @dp.message_handler(Command('start'))
 async def on_start(message: types.Message):
