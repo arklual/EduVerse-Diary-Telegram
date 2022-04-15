@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 from subject import Subject
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 
 
 class Student:
@@ -16,17 +15,6 @@ class Student:
 
     def __lt__(self, other):
         return int(self.name.split('.')[0]) < int(other.name.split('.')[0])
-
-    def get_information(self, font):
-        info = []
-        for subject in self.subjects:
-            marks = ''
-            for mark in subject.marks:
-                marks += f'{mark} '
-            info.append([Paragraph(subject.name, font), Paragraph(
-                subject.average_mark, font), Paragraph(marks, font)])
-        return info
-
 
 def add_marks(session, subjects, students):
     for subject in subjects:
