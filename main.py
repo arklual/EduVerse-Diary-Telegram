@@ -57,7 +57,7 @@ def get_students(session):
     }
     response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                            headers=headers, cookies=cookies, verify=False)
-    soup = BeautifulSoup(response.text, features='lxml')
+    soup = BeautifulSoup(response.text)
     user_rows = soup.find_all('div', {'id': 'user-rows'})
     users = user_rows[1].find_all('div')
     for user in users:

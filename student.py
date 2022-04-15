@@ -16,6 +16,7 @@ class Student:
     def __lt__(self, other):
         return int(self.name.split('.')[0]) < int(other.name.split('.')[0])
 
+
 def add_marks(session, subjects, students):
     for subject in subjects:
         cookies = {
@@ -37,7 +38,7 @@ def add_marks(session, subjects, students):
         response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                                headers=headers, cookies=cookies, verify=False)
 
-        soup = BeautifulSoup(response.text, features='lxml')
+        soup = BeautifulSoup(response.text)
         marks = soup.find_all('div', {'class': 'mark-row'})
         if(len(marks) > 26):
             for i in range(len(students)):
@@ -70,7 +71,7 @@ def add_english_group(session, students):
     }
     response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                            headers=headers, cookies=cookies, verify=False)
-    soup = BeautifulSoup(response.text, features='lxml')
+    soup = BeautifulSoup(response.text)
     user_rows = soup.find_all('div', {'id': 'user-rows'})
     users = user_rows[1].find_all('div')
     for user in users:
@@ -102,7 +103,7 @@ def add_math_group(session, students):
     }
     response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                            headers=headers, cookies=cookies, verify=False)
-    soup = BeautifulSoup(response.text, features='lxml')
+    soup = BeautifulSoup(response.text)
     user_rows = soup.find_all('div', {'id': 'user-rows'})
     users = user_rows[1].find_all('div')
     for user in users:
@@ -142,7 +143,7 @@ def add_english_info_marks(session, subjects_1, subjects_2, students):
         }
         response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                                headers=headers, cookies=cookies, verify=False)
-        soup = BeautifulSoup(response.text, features='lxml')
+        soup = BeautifulSoup(response.text)
         marks = soup.find_all('div', {'class': 'mark-row'})
         if(len(marks) > 5):
             for i in range(len(students_en_2)):
@@ -172,7 +173,7 @@ def add_english_info_marks(session, subjects_1, subjects_2, students):
         }
         response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                                headers=headers, cookies=cookies, verify=False)
-        soup = BeautifulSoup(response.text, features='lxml')
+        soup = BeautifulSoup(response.text)
         marks = soup.find_all('div', {'class': 'mark-row'})
         if(len(marks) > 5):
             for i in range(len(students_en_1)):
@@ -215,7 +216,7 @@ def add_math_marks(session, subjects_1, subjects_2, students):
         response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                                headers=headers, cookies=cookies, verify=False)
 
-        soup = BeautifulSoup(response.text, features='lxml')
+        soup = BeautifulSoup(response.text)
         marks = soup.find_all('div', {'class': 'mark-row'})
         if(len(marks) > 5):
             for i in range(len(students_math_2)):
@@ -245,7 +246,7 @@ def add_math_marks(session, subjects_1, subjects_2, students):
         }
         response = session.get('http://93.181.225.54/educ_proc/ep_marks/',
                                headers=headers, cookies=cookies, verify=False)
-        soup = BeautifulSoup(response.text, features='lxml')
+        soup = BeautifulSoup(response.text)
         marks = soup.find_all('div', {'class': 'mark-row'})
         if(len(marks) > 5):
             for i in range(len(students_math_1)):
